@@ -30,7 +30,6 @@ function Calculator() {
 
   function calculate() {
     try {
-      // eslint-disable-next-line no-eval
       const evalResult = eval(input);
       setResult(evalResult);
       setError('');
