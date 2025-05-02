@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  body.dark {
+    background: #121212;
+    color: #fff;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .toggle-mode {
+    width: 300px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    background: #e0e0e0;
+    color: #222;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  
+  .toggle-mode:hover {
+    background: #333;
+    color: white;
+  }
+  
+  body.dark .toggle-mode {
+    background: #333;
+    color: white;
+  }
+  
+  body.dark .toggle-mode:hover {
+    background: #ddd;
+    color: #111;
+  }
+  
+  .calculator {
+    width: 300px;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    background: #f3f3f3;
+  }
+  
+  body.dark .calculator {
+    background: #1e1e1e;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  
+  .display {
+    background: #fff;
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-align: right;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+  }
+  
+  body.dark .display {
+    background: #2a2a2a;
+    border: 1px solid #444;
+  }
+  
+  .result {
+    font-size: 1.2rem;
+    color: #555;
+  }
+
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+  
+  button {
+    padding: 1rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background: #e0e0e0;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  button:hover {
+    background: #d5d5d5;
+  }
+  
+  body.dark button {
+    background: #333;
+    color: white;
+  }
+  
+  body.dark button:hover {
+    background: #444;
+  }
+  
+  button.clear {
+    grid-column: span 4;
+    background: #f44336;
+    color: white;
+  }
+  
+  body.dark button.clear {
+    background: #d32f2f;
+  }
+  
+  button.backspace,
+  button.clear {
+    grid-column: span 2;
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+  
+  button.backspace {
+    background: #ff9800;
+    color: white;
+  }
+  
+  body.dark button.backspace {
+    background: #f57c00;
+  }
+  
+  button.clear {
+    background: #f44336;
+    color: white;
+  }
+  
+  body.dark button.clear {
+    background: #d32f2f;
+  }
+  
+  
