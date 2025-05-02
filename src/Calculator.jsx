@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import CalcButton from './CalcButton';
 import './Calculator.css';
 
@@ -7,6 +7,7 @@ function Calculator() {
   const [result, setResult] = useState('');
   const [darkMode, setDarkMode] = useState(false);
   const [error, setError] = useState('');
+  const inputBuffer = useRef('');
 
   function toggleDarkMode() {
     document.body.classList.toggle('dark');
@@ -14,24 +15,36 @@ function Calculator() {
   }
 
   function handleClick(value) {
-    setInput((prev) => prev + value);
+    inputBuffer.current += value;
+    setInput(inputBuffer.current);
     setError('');
   }
 
   function backspace() {
-    setInput((prev) => prev.slice(0, -1));
+    inputBuffer.current = inputBuffer.current.slice(0, -1);
+    setInput(inputBuffer.current);
   }
 
   function clear() {
+    inputBuffer.current = '';
     setInput('');
     setResult('');
     setError('');
   }
 
   function calculate() {
+    const expression = inputBuffer.current.trim();
+
+    if (expression === '') {
+      setResult('');
+      setError('Du måste skriva in något');
+      return;
+    }
+
     try {
-      const evalResult = eval(input);
+      const evalResult = eval(expression);
       setResult(evalResult);
+      setInput(expression);
       setError('');
     } catch {
       setResult('');
@@ -42,13 +55,18 @@ function Calculator() {
   useEffect(() => {
     function handleKeyDown(e) {
       const key = e.key;
-      if ('0123456789+-*/.'.includes(key)) {
-        handleClick(key);
-      } else if (key === 'Enter') {
+
+      if (key === 'Enter' || key === 'NumpadEnter') {
+        e.preventDefault();
         calculate();
+      } else if (/^[0-9+\-*/.]$/.test(key)) {
+        e.preventDefault();
+        handleClick(key);
       } else if (key === 'Backspace') {
+        e.preventDefault();
         backspace();
       } else if (key === 'Escape') {
+        e.preventDefault();
         clear();
       }
     }
